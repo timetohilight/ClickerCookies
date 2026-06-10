@@ -25,6 +25,9 @@
             android:name=".Controller.ShopActivity"
             android:exported="false"/>
 
+
+        <activity android:name=".Controller.SecondLevelActivity" android:exported="false" />
+        <activity android:name=".Controller.Level2ShopActivity" android:exported="false" />
     </application>
 
 </manifest>

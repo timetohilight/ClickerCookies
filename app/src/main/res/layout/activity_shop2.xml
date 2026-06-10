@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center_horizontal"
+    android:background="#1B1533">
+
+    <TextView
+        android:id="@+id/shopTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="32dp"
+        android:text="МАГАЗИН OREO"
+        android:textSize="28sp"
+        android:textColor="#E9E6FF"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyClickPower2"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/button_style_lvl2"
+        android:text="Улучшить клик"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyAuto2"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/button_style_lvl2"
+        android:text="Автокликер"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buySuperClick2"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/button_style_lvl2"
+        android:text="Супер-клик"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyQuantum2"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/button_style_lvl2"
+        android:text="Квант. Ген."
+        android:textColor="#FFFFFF"
+        android:textSize="15sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyClick2"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_style_lvl2"
+        android:text="Множитель"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:background="@drawable/button_style_lvl2"
+        android:text="НАЗАД"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+</LinearLayout>

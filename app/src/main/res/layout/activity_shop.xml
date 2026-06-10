@@ -1,49 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@drawable/bg_gradient">
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center"
+    android:background="@drawable/bg_gradient"> <TextView
+    android:id="@+id/shopTitle1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="32dp"
+    android:text="БАЛАНС: 0 🍪"
+    android:textSize="26sp"
+    android:textColor="#FFFFFF"
+    android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/titleShop"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyClickPower"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_style"
+        android:text="Улучшить клик"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyAuto"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_style"
+        android:text="Купить автокликер"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyFactory"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_style"
+        android:text="Купить фабрику"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyMultiplier"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_style"
+        android:text="Множитель клика"
+        android:textColor="#FFFDFD"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Магазин улучшений"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:textColor="#4A148C"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buyClickPower"
-        android:layout_width="357dp"
-        android:layout_height="76dp"
-        android:text="Сила клика +1 (50 печенек)"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="182dp" />
-
-    <Button
-        android:id="@+id/buyAutoClicker"
-        android:layout_width="387dp"
-        android:layout_height="115dp"
-        android:text="Автокликер (150 печенек)"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-7dp"
-        tools:layout_editor_absoluteY="308dp" />
-
-    <Button
-        android:id="@+id/buyMultiplier"
-        android:layout_width="395dp"
-        android:layout_height="119dp"
-        android:text="Множитель x2 (300 печенек)"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="530dp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:background="@drawable/button_style"
+        android:text="Назад к игре"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
