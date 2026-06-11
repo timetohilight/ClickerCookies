@@ -89,4 +89,12 @@ public class Level2ShopActivity extends AppCompatActivity {
         super.onResume();
         updateShopUi(); // Обновляем данные при каждом открытии экрана
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Автоматическое сохранение при выходе из магазина второго уровня
+        model.saveProgress(getApplicationContext());
+    }
 }

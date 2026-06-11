@@ -117,4 +117,12 @@ public class ShopActivity extends AppCompatActivity {
         // Обязательно останавливаем таймер при выходе из магазина, чтобы игра не лагала
         handler.removeCallbacksAndMessages(null);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Автоматическое сохранение при выходе из магазина первого уровня
+        model.saveProgress(getApplicationContext());
+    }
 }

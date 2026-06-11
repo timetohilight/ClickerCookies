@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         model = GameModel.getInstance();
+        // Загрузка прогресса при запуске
+        model.loadProgress(getApplicationContext());
 
         cookieView = findViewById(R.id.cookieView);
         mainCookie = findViewById(R.id.mainCookie);
@@ -89,5 +91,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         autoClickHandler.removeCallbacks(autoClickRunnable);
+        // Автоматическое сохранение при уходе с главного экрана или его сворачивании
+        model.saveProgress(getApplicationContext());
     }
+
+    // Автосейв
+
+
 }

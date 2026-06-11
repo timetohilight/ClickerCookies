@@ -1,4 +1,6 @@
 package com.example.cookeisclickers.Model;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 public class GameModel {
 
@@ -30,6 +32,32 @@ public class GameModel {
     private int superClickCostLvl2 = 5000;
     private int quantumGeneratorCostLvl2 = 15000;
     private int multiplierCostLvl2 = 2000;
+
+    // Имя файла настроек
+    private static final String PREF_NAME = "cookie_clicker_save";
+
+    // --- Ключи для сохранения (уровни 1 и 2) ---
+    private static final String KEY_COOKIES = "cookies";
+    private static final String KEY_CLICK_POWER = "clickPower";
+    private static final String KEY_MULTIPLIER = "multiplier";
+    private static final String KEY_AUTO_CLICKERS = "autoClickers";
+    private static final String KEY_COOKIE_FACTORIES = "cookieFactories";
+    private static final String KEY_CLICK_UPGRADE_COST = "clickUpgradeCost";
+    private static final String KEY_AUTO_CLICKER_COST = "autoClickerCost";
+    private static final String KEY_FACTORY_COST = "factoryCost";
+    private static final String KEY_MULTIPLIER_COST = "multiplierCost";
+
+    private static final String KEY_LEVEL2_COOKIES = "level2Cookies";
+    private static final String KEY_IS_LEVEL2_UNLOCKED = "isLevel2Unlocked";
+    private static final String KEY_CLICK_POWER_LVL2 = "clickPowerLvl2";
+    private static final String KEY_AUTO_CLICKERS_LVL2 = "autoClickersLvl2";
+    private static final String KEY_SUPER_CLICKS_LVL2 = "superClicksLvl2";
+    private static final String KEY_QUANTUM_GENERATORS_LVL2 = "quantumGeneratorsLvl2";
+    private static final String KEY_CLICK_UPGRADE_COST_LVL2 = "clickUpgradeCostLvl2";
+    private static final String KEY_AUTO_CLICKER_COST_LVL2 = "autoClickerCostLvl2";
+    private static final String KEY_SUPER_CLICK_COST_LVL2 = "superClickCostLvl2";
+    private static final String KEY_QUANTUM_GENERATOR_COST_LVL2 = "quantumGeneratorCostLvl2";
+    private static final String KEY_MULTIPLIER_COST_LVL2 = "multiplierCostLvl2";
 
     private GameModel() {}
 
@@ -91,4 +119,69 @@ public class GameModel {
     public boolean buySuperClickLvl2() { if (level2Cookies >= superClickCostLvl2) { level2Cookies -= superClickCostLvl2; superClicksLvl2++; superClickCostLvl2 = (int)(superClickCostLvl2 * 1.7); return true; } return false; }
     public boolean buyQuantumGeneratorLvl2() { if (level2Cookies >= quantumGeneratorCostLvl2) { level2Cookies -= quantumGeneratorCostLvl2; quantumGeneratorsLvl2++; quantumGeneratorCostLvl2 = (int)(quantumGeneratorCostLvl2 * 1.8); return true; } return false; }
     public boolean buyMultiplierUpgradeLvl2() { if (level2Cookies >= multiplierCostLvl2) { level2Cookies -= multiplierCostLvl2; clickPowerLvl2 *= 2; multiplierCostLvl2 = (int)(multiplierCostLvl2 * 3.0); return true; } return false; }
+
+    // Метод для сохранения всех игровых данных во внутреннюю память
+    public void saveProgress(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        // Данные 1 уровня
+        editor.putInt(KEY_COOKIES, cookies);
+        editor.putInt(KEY_CLICK_POWER, clickPower);
+        editor.putInt(KEY_MULTIPLIER, multiplier);
+        editor.putInt(KEY_AUTO_CLICKERS, autoClickers);
+        editor.putInt(KEY_COOKIE_FACTORIES, cookieFactories);
+        editor.putInt(KEY_CLICK_UPGRADE_COST, clickUpgradeCost);
+        editor.putInt(KEY_AUTO_CLICKER_COST, autoClickerCost);
+        editor.putInt(KEY_FACTORY_COST, factoryCost);
+        editor.putInt(KEY_MULTIPLIER_COST, multiplierCost);
+
+        // Данные 2 уровня
+        editor.putInt(KEY_LEVEL2_COOKIES, level2Cookies);
+        editor.putBoolean(KEY_IS_LEVEL2_UNLOCKED, isLevel2Unlocked);
+        editor.putInt(KEY_CLICK_POWER_LVL2, clickPowerLvl2);
+        editor.putInt(KEY_AUTO_CLICKERS_LVL2, autoClickersLvl2);
+        editor.putInt(KEY_SUPER_CLICKS_LVL2, superClicksLvl2);
+        editor.putInt(KEY_QUANTUM_GENERATORS_LVL2, quantumGeneratorsLvl2);
+        editor.putInt(KEY_CLICK_UPGRADE_COST_LVL2, clickUpgradeCostLvl2);
+        editor.putInt(KEY_AUTO_CLICKER_COST_LVL2, autoClickerCostLvl2);
+        editor.putInt(KEY_SUPER_CLICK_COST_LVL2, superClickCostLvl2);
+        editor.putInt(KEY_QUANTUM_GENERATOR_COST_LVL2, quantumGeneratorCostLvl2);
+        editor.putInt(KEY_MULTIPLIER_COST_LVL2, multiplierCostLvl2);
+
+        // Применяем изменения в фоновом режиме
+        editor.apply();
+    }
+
+    /**
+     * Метод для загрузки игровых данных из внутренней памяти
+     */
+    public void loadProgress(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+
+        // Загружаем значения. В качестве второго параметра передаются значения по умолчанию
+        cookies = prefs.getInt(KEY_COOKIES, 0);
+        clickPower = prefs.getInt(KEY_CLICK_POWER, 1);
+        multiplier = prefs.getInt(KEY_MULTIPLIER, 1);
+        autoClickers = prefs.getInt(KEY_AUTO_CLICKERS, 0);
+        cookieFactories = prefs.getInt(KEY_COOKIE_FACTORIES, 0);
+        clickUpgradeCost = prefs.getInt(KEY_CLICK_UPGRADE_COST, 50);
+        autoClickerCost = prefs.getInt(KEY_AUTO_CLICKER_COST, 150);
+        factoryCost = prefs.getInt(KEY_FACTORY_COST, 800);
+        multiplierCost = prefs.getInt(KEY_MULTIPLIER_COST, 300);
+
+        level2Cookies = prefs.getInt(KEY_LEVEL2_COOKIES, 0);
+        isLevel2Unlocked = prefs.getBoolean(KEY_IS_LEVEL2_UNLOCKED, false);
+        clickPowerLvl2 = prefs.getInt(KEY_CLICK_POWER_LVL2, 20);
+        autoClickersLvl2 = prefs.getInt(KEY_AUTO_CLICKERS_LVL2, 0);
+        superClicksLvl2 = prefs.getInt(KEY_SUPER_CLICKS_LVL2, 0);
+        quantumGeneratorsLvl2 = prefs.getInt(KEY_QUANTUM_GENERATORS_LVL2, 0);
+        clickUpgradeCostLvl2 = prefs.getInt(KEY_CLICK_UPGRADE_COST_LVL2, 200);
+        autoClickerCostLvl2 = prefs.getInt(KEY_AUTO_CLICKER_COST_LVL2, 1000);
+        superClickCostLvl2 = prefs.getInt(KEY_SUPER_CLICK_COST_LVL2, 5000);
+        quantumGeneratorCostLvl2 = prefs.getInt(KEY_QUANTUM_GENERATOR_COST_LVL2, 15000);
+        multiplierCostLvl2 = prefs.getInt(KEY_MULTIPLIER_COST_LVL2, 2000);
+    }
+
+
 }

@@ -63,5 +63,7 @@ public class SecondLevelActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         handler.removeCallbacks(updateRunnable);
+        // Автоматическое сохранение при уходе со второго уровня
+        model.saveProgress(getApplicationContext());
     }
 }
