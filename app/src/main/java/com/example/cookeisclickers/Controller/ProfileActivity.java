@@ -28,11 +28,10 @@ public class ProfileActivity extends AppCompatActivity {
     private Button btnCreateProfile, btnDeleteProfile, btnBack;
     private ListView lvProfiles;
 
-    private List<ProfileData> profileList; // Список объектов с данными игроков
+    private List<ProfileData> profileList;
     private ProfileAdapter adapter;
-    private int selectedPosition = -1; // Индекс выбранного в списке игрока
+    private int selectedPosition = -1;
 
-    // Вспомогательный класс для хранения данных игрока
     private static class ProfileData {
         String name;
         int cookiesLvl1;
@@ -65,25 +64,21 @@ public class ProfileActivity extends AppCompatActivity {
 
         updateUi();
 
-        // Клик по элементу списка
         lvProfiles.setOnItemClickListener((parent, view, position, id) -> {
             selectedPosition = position;
-            adapter.notifyDataSetChanged(); // Перерисовываем, чтобы кружочек стал активным
+            adapter.notifyDataSetChanged();
         });
 
-        // Кнопка: Выбрать или Создать новый профиль
         btnCreateProfile.setOnClickListener(v -> {
             String username = etNewUsername.getText().toString().trim();
 
             if (!TextUtils.isEmpty(username)) {
-                // Если введено имя в EditText — создаем/переключаем на него
                 model.changeUser(username, getApplicationContext());
                 etNewUsername.setText("");
                 selectedPosition = -1;
                 updateUi();
                 Toast.makeText(this, "Профиль " + username + " активен!", Toast.LENGTH_SHORT).show();
             } else if (selectedPosition != -1) {
-                // Если поле пустое, но выбран элемент из списка — переключаемся на него
                 String selectedUser = profileList.get(selectedPosition).name;
                 model.changeUser(selectedUser, getApplicationContext());
                 selectedPosition = -1;
@@ -94,7 +89,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        // Кнопка: Удалить выбранный профиль
         btnDeleteProfile.setOnClickListener(v -> {
             if (selectedPosition != -1) {
                 String selectedUser = profileList.get(selectedPosition).name;
@@ -116,13 +110,11 @@ public class ProfileActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
     }
 
-    // Подгрузка актуальных данных из SharedPreferences всех игроков
     private void updateUi() {
         tvCurrentProfile.setText("Текущий профиль: " + model.getCurrentUser());
         profileList.clear();
 
         for (String user : model.getUserList()) {
-            // Читаем индивидуальный файл сохранения каждого аккаунта
             SharedPreferences userPrefs = getSharedPreferences("cookies_save_" + user, Context.MODE_PRIVATE);
             int c1 = userPrefs.getInt("cookies", 0);
             int c2 = userPrefs.getInt("level2_cookies", 0);
@@ -133,7 +125,7 @@ public class ProfileActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    // --- НАШ КАСТОМНЫЙ АДАПТЕР ДЛЯ ОТОБРАЖЕНИЯ СТРОК ---
+
     private class ProfileAdapter extends BaseAdapter {
         private final Context context;
         private final List<ProfileData> items;
@@ -161,10 +153,8 @@ public class ProfileActivity extends AppCompatActivity {
 
             ProfileData data = items.get(position);
 
-            // Формируем аккуратный и понятный текст
             tvProfileInfo.setText(data.name + "  [ Lvl 1: " + data.cookiesLvl1 + " 🍪 | Lvl 2: " + data.cookiesLvl2 + " 🍪 ]");
 
-            // Проверяем, нажат ли этот пункт прямо сейчас
             rbSelect.setChecked(position == selectedPosition);
 
             return convertView;

@@ -8,7 +8,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <!-- Главный экран -->
         <activity
             android:name=".Controller.MainActivity"
             android:exported="true">
@@ -20,7 +19,7 @@
 
         </activity>
 
-        <!-- Магазин -->
+
         <activity
             android:name=".Controller.ShopActivity"
             android:exported="false"/>

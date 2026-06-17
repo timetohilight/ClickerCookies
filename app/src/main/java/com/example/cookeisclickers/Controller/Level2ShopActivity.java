@@ -65,17 +65,14 @@ public class Level2ShopActivity extends AppCompatActivity {
     }
 
     private void updateShopUi() {
-        // Обновляем заголовок с балансом
         if (shopTitle2 != null) {
             shopTitle2.setText("OREO: " + model.getLevel2Cookies() + " 🍪");
         }
 
-        // ИСПРАВЛЕНИЕ: используем методы для 2 уровня
         buyAuto2.setText("Квант. Автокликер (" + model.getAutoClickersLvl2() + " шт)\nЦена: " + model.getAutoClickerCostLvl2() + " 🍪");
 
         buyQuantum2.setText("Квант. Ген. (" + model.getQuantumGeneratorsLvl2() + " шт)\nЦена: " + model.getQuantumGeneratorCostLvl2() + " 🍪");
 
-        // Остальные кнопки тоже должны использовать методы Lvl2
         buyClickPower2.setText("Улучшить клик\nЦена: " + model.getClickUpgradeCostLvl2() + " 🍪");
         buySuperClick2.setText("Супер-клик\nЦена: " + model.getSuperClickCostLvl2() + " 🍪");
         buyClick2.setText("Множитель\nЦена: " + model.getMultiplierCostLvl2() + " 🍪");
@@ -87,14 +84,14 @@ public class Level2ShopActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        updateShopUi(); // Обновляем данные при каждом открытии экрана
+        updateShopUi();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        // Автоматическое сохранение при выходе из магазина второго уровня
+
         model.saveProgress(getApplicationContext());
     }
 }
