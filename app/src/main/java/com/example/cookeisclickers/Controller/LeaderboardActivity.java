@@ -68,11 +68,11 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
     @Override
     public void renderLeaderboard(List<String> formattedScores) {
         if (listViewLeaderboard != null && formattedScores != null) {
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, formattedScores);
+            // Заменили дефолтный android.R.layout.simple_list_item_1 на твой R.layout.leaderboard_item
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.leaderboard_item, formattedScores);
             listViewLeaderboard.setAdapter(adapter);
         }
     }
-
     @Override
     public void updateLocalUserData(String username, int lvl1, int lvl2) {
         if (textViewLocalUserStatus != null) {
