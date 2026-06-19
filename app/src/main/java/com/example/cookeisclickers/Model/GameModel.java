@@ -223,6 +223,15 @@ public class GameModel {
         if (level2Cookies >= multiplierCostLvl2) { level2Cookies -= multiplierCostLvl2; clickPowerLvl2 *= 2; multiplierCostLvl2 *= 3.0; return true; }
         return false;
     }
+    public java.util.Map<String, Object> getFirebaseDataMap() {
+        java.util.Map<String, Object> data = new java.util.HashMap<>();
+        data.put("username", currentUser);
+        data.put("cookiesLvl1", cookies);
+        data.put("cookiesLvl2", level2Cookies);
+        data.put("totalScore", cookies + level2Cookies);
+        data.put("timestamp", System.currentTimeMillis());
+        return data;
+    }
 
     // --- Геттеры ---
     public int getCookies() { return cookies; }

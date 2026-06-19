@@ -18,6 +18,7 @@ public class SecondLevelActivity extends AppCompatActivity {
     private final Handler handler = new Handler();
     private Runnable updateRunnable;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,17 @@ public class SecondLevelActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
         btnShop.setOnClickListener(v -> startActivity(new Intent(SecondLevelActivity.this, Level2ShopActivity.class)));
+
+
+        android.widget.Button btnGoToLeaderboard = findViewById(R.id.btnGoToLeaderboard);
+        btnGoToLeaderboard.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                // Явно указываем переход со Второго уровня на Лидерборд
+                Intent intent = new Intent(SecondLevelActivity.this, LeaderboardActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void updateView() {

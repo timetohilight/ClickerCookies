@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#29214B">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Глобальная таблица рекордов"
+        android:textColor="#E9E6FF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/textViewLocalUserStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Текущая сессия: Загрузка..."
+        android:textColor="#B3AEDB"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center" />
+
+    <ListView
+        android:id="@+id/listViewLeaderboard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="16dp"
+        android:background="#1F1A3A" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnUploadScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style_lvl2"
+        android:text="Выгрузить рекорд в облако"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="8dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDownloadScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style_lvl2"
+        android:text="Восстановить прогресс"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="12dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLeaderboardBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style_lvl2"
+        android:text="НАЗАД В ИГРУ"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
