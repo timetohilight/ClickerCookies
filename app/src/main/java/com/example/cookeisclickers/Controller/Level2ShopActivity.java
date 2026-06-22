@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.cookeisclickers.Model.GameModel;
 import com.example.cookeisclickers.R;
+import androidx.appcompat.widget.AppCompatButton;
 
 public class Level2ShopActivity extends AppCompatActivity {
 
@@ -23,6 +24,44 @@ public class Level2ShopActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop2);
+
+        Button btnShopHelpLvl2 = findViewById(R.id.btnShopHelpLvl2);
+
+        if (btnShopHelpLvl2 != null) {
+            btnShopHelpLvl2.setOnClickListener(v -> {
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+                builder.setTitle("Справка: Космический магазин (Уровень 2)");
+
+                StringBuilder helpMessage = new StringBuilder();
+                helpMessage.append("Добро пожаловать в продвинутый магазин! Расчеты ведутся строго в валюте OREO 🍪.\n\n");
+
+                helpMessage.append("1. УЛУЧШИТЬ КЛИК\n");
+                helpMessage.append("• Начальная цена: 200 OREO\n");
+                helpMessage.append("• Что даёт: Прибавляет +15 единиц к базовой силе клика за покупку.\n\n");
+
+                helpMessage.append("2. КВАНТОВЫЙ АВТОКЛИКЕР\n");
+                helpMessage.append("• Начальная цена: 1 000 OREO\n");
+                helpMessage.append("• Что даёт: Приносит +20 OREO в секунду в пассивном режиме.\n\n");
+
+                helpMessage.append("3. СУПЕР-КЛИК\n");
+                helpMessage.append("• Начальная цена: 5 000 OREO\n");
+                helpMessage.append("• Что даёт: Добавляет мощный бонус +50 очков к каждому активному нажатию.\n\n");
+
+                helpMessage.append("4. КВАНТОВЫЙ ГЕНЕРАТОР\n");
+                helpMessage.append("• Начальная цена: 15 000 OREO\n");
+                helpMessage.append("• Что даёт: Дает колоссальный пассивный доход +300 OREO в секунду.\n\n");
+
+                helpMessage.append("5. МНОЖИТЕЛЬ\n");
+                helpMessage.append("• Начальная цена: 2 000 OREO\n");
+                helpMessage.append("• Что даёт: Мгновенно удваивает (x2) текущую базовую силу клика 2 уровня.\n\n");
+
+                helpMessage.append("⚠️ Цены растут при покупке: Клик (+50%), Автокликер (+40%), Супер-клик (+70%), Генератор (+80%), Множитель (+200%).");
+
+                builder.setMessage(helpMessage.toString());
+                builder.setPositiveButton("назад", (dialog, which) -> dialog.dismiss());
+                builder.show();
+            });
+        }
 
         model = GameModel.getInstance();
 

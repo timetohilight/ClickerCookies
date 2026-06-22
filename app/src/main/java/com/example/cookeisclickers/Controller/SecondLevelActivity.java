@@ -40,6 +40,13 @@ public class SecondLevelActivity extends AppCompatActivity {
             }
         };
 
+        TextView usernameViewLvl2 = findViewById(R.id.usernameViewLvl2);
+
+        if (usernameViewLvl2 != null) {
+            String currentProfile = GameModel.getInstance().getCurrentUser();
+            usernameViewLvl2.setText("Текущий профиль: " + currentProfile);
+        }
+
         mainCookie.setOnClickListener(v -> {
             model.addLevel2Cookies();
             updateView();

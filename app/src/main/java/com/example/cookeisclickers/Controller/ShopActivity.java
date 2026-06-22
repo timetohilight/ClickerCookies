@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.cookeisclickers.Model.GameModel;
 import com.example.cookeisclickers.R;
+import androidx.appcompat.widget.AppCompatButton;
 
 public class ShopActivity extends AppCompatActivity {
 
@@ -25,6 +26,41 @@ public class ShopActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+
+
+        Button btnShopHelpLvl1 = findViewById(R.id.btnShopHelpLvl1);
+
+        if (btnShopHelpLvl1 != null) {
+            btnShopHelpLvl1.setOnClickListener(v -> {
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+                builder.setTitle("Справка: Магазин улучшений (Уровень 1)");
+
+                StringBuilder helpMessage = new StringBuilder();
+                helpMessage.append("Здесь вы тратите обычные Печеньки 🍪 для автоматизации и ускорения добычи.\n\n");
+
+                helpMessage.append("1. УЛУЧШИТЬ КЛИК\n");
+                helpMessage.append("• Начальная цена: 50 🍪\n");
+                helpMessage.append("• Что даёт: Добавляет +1 к базовой силе клика за каждую покупку.\n\n");
+
+                helpMessage.append("2. КУПИТЬ АВТОКЛИКЕР\n");
+                helpMessage.append("• Начальная цена: 150 🍪\n");
+                helpMessage.append("• Что даёт: Приносит +1 печеньку в секунду в пассивном режиме.\n\n");
+
+                helpMessage.append("3. КУПИТЬ ФАБРИКУ\n");
+                helpMessage.append("• Начальная цена: 800 🍪\n");
+                helpMessage.append("• Что даёт: Приносит сразу +15 печенек в секунду автоматически.\n\n");
+
+                helpMessage.append("4. МНОЖИТЕЛЬ КЛИКА\n");
+                helpMessage.append("• Начальная цена: 300 🍪\n");
+                helpMessage.append("• Что даёт: Удваивает (x2) текущий общий множитель вашего клика.\n\n");
+
+                helpMessage.append("⚠️ Цены растут при покупке: Клик (+50%), Автокликер (+40%), Фабрика (+60%), Множитель (+150%).");
+
+                builder.setMessage(helpMessage.toString());
+                builder.setPositiveButton("назад", (dialog, which) -> dialog.dismiss());
+                builder.show();
+            });
+        }
 
         model = GameModel.getInstance();
 
@@ -109,4 +145,6 @@ public class ShopActivity extends AppCompatActivity {
 
         model.saveProgress(getApplicationContext());
     }
+
+
 }
