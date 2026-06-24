@@ -21,7 +21,7 @@ public class LeaderboardPresenter {
         void renderLeaderboard(List<String> formattedScores);
         void showSyncSuccess(String message);
         void showNetworkError(String error);
-        void updateLocalUserData(String username, int lvl1, int lvl2);
+        void updateLocalUserData(String username, long lvl1, long lvl2);
     }
 
     public LeaderboardPresenter(View view) {
@@ -32,17 +32,14 @@ public class LeaderboardPresenter {
             FirebaseDatabase database;
 
             try {
-                // Пытаемся взять стандартное приложение
                 database = FirebaseDatabase.getInstance();
             } catch (IllegalStateException e) {
-                // Если дефолтное приложение не инициализировано, инициализируем его ВРУЧНУЮ программно:
                 com.google.firebase.FirebaseOptions options = new com.google.firebase.FirebaseOptions.Builder()
-                        .setApiKey("AIzaSyA-ПOДCТAВЬ_CВOЙ_AРI_КЛЮЧ_ИЗ_ПAНEЛИ") // Опционально, но лучше указать
+                        .setApiKey("AIzaSyA-ПOДCТAВЬ_CВOЙ_AРI_КЛЮЧ_ИЗ_ПAНEЛИ")
                         .setApplicationId("com.example.cookeisclickers")
                         .setDatabaseUrl("https://leader-bord-cookie-default-rtdb.europe-west1.firebasedatabase.app")
                         .build();
 
-                // Инициализируем контекстом приложения
                 android.content.Context appContext = null;
                 if (view instanceof android.content.Context) {
                     appContext = ((android.content.Context) view).getApplicationContext();
@@ -52,7 +49,6 @@ public class LeaderboardPresenter {
                     com.google.firebase.FirebaseApp.initializeApp(appContext, options);
                     database = FirebaseDatabase.getInstance();
                 } else {
-                    // Если контекст не достали, стучимся напрямую по URL
                     database = FirebaseDatabase.getInstance("https://leader-bord-cookie-default-rtdb.europe-west1.firebasedatabase.app");
                 }
             }
@@ -104,21 +100,13 @@ public class LeaderboardPresenter {
                     Long lvl1 = snapshot.child("cookiesLvl1").getValue(Long.class);
                     Long lvl2 = snapshot.child("cookiesLvl2").getValue(Long.class);
                     if (lvl1 != null && lvl2 != null) {
-                        int cloudLvl1 = lvl1.intValue();
-                        int cloudLvl2 = lvl2.intValue();
+                        long cloudLvl1 = lvl1;
+                        long cloudLvl2 = lvl2;
 
                         if ((cloudLvl1 + cloudLvl2) > (model.getCookies() + model.getLevel2Cookies())) {
-                            int deltaLvl1 = cloudLvl1 - model.getCookies();
-                            int deltaLvl2 = cloudLvl2 - model.getLevel2Cookies();
-
-                            if (deltaLvl1 > 0) {
-                                for (int i = 0; i < deltaLvl1; i++) {
-                                    model.addCookies();
-                                }
-                            }
-                            if (deltaLvl2 > 0) {
-                                model.addPassiveLevel2Cookies(deltaLvl2);
-                            }
+                            // Напрямую устанавливаем значения во избежание зависания интерфейса на больших числах
+                            model.setCookies(cloudLvl1);
+                            model.setLevel2Cookies(cloudLvl2);
 
                             model.saveProgress(context);
                             view.showSyncSuccess("Архивный прогресс успешно восстановлен из облака!");

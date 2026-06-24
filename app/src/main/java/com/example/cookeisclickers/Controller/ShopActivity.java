@@ -8,7 +8,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.cookeisclickers.Model.GameModel;
 import com.example.cookeisclickers.R;
-import androidx.appcompat.widget.AppCompatButton;
 
 public class ShopActivity extends AppCompatActivity {
 
@@ -27,7 +26,6 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
-
         Button btnShopHelpLvl1 = findViewById(R.id.btnShopHelpLvl1);
 
         if (btnShopHelpLvl1 != null) {
@@ -37,23 +35,10 @@ public class ShopActivity extends AppCompatActivity {
 
                 StringBuilder helpMessage = new StringBuilder();
                 helpMessage.append("Здесь вы тратите обычные Печеньки 🍪 для автоматизации и ускорения добычи.\n\n");
-
-                helpMessage.append("1. УЛУЧШИТЬ КЛИК\n");
-                helpMessage.append("• Начальная цена: 50 🍪\n");
-                helpMessage.append("• Что даёт: Добавляет +1 к базовой силе клика за каждую покупку.\n\n");
-
-                helpMessage.append("2. КУПИТЬ АВТОКЛИКЕР\n");
-                helpMessage.append("• Начальная цена: 150 🍪\n");
-                helpMessage.append("• Что даёт: Приносит +1 печеньку в секунду в пассивном режиме.\n\n");
-
-                helpMessage.append("3. КУПИТЬ ФАБРИКУ\n");
-                helpMessage.append("• Начальная цена: 800 🍪\n");
-                helpMessage.append("• Что даёт: Приносит сразу +15 печенек в секунду автоматически.\n\n");
-
-                helpMessage.append("4. МНОЖИТЕЛЬ КЛИКА\n");
-                helpMessage.append("• Начальная цена: 300 🍪\n");
-                helpMessage.append("• Что даёт: Удваивает (x2) текущий общий множитель вашего клика.\n\n");
-
+                helpMessage.append("1. УЛУЧШИТЬ КЛИК\n• Начальная цена: 50 🍪\n• Что даёт: Добавляет +1 к базовой силе клика за каждую покупку.\n\n");
+                helpMessage.append("2. КУПИТЬ АВТОКЛИКЕР\n• Начальная цена: 150 🍪\n• Что даёт: Приносит +1 печеньку в секунду в пассивном режиме.\n\n");
+                helpMessage.append("3. КУПИТЬ ФАБРИКУ\n• Начальная цена: 800 🍪\n• Что даёт: Приносит сразу +15 печенек в секунду автоматически.\n\n");
+                helpMessage.append("4. МНОЖИТЕЛЬ КЛИКА\n• Начальная цена: 300 🍪\n• Что даёт: Удваивает (x2) текущий общий множитель вашего клика.\n\n");
                 helpMessage.append("⚠️ Цены растут при покупке: Клик (+50%), Автокликер (+40%), Фабрика (+60%), Множитель (+150%).");
 
                 builder.setMessage(helpMessage.toString());
@@ -142,9 +127,6 @@ public class ShopActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
         model.saveProgress(getApplicationContext());
     }
-
-
 }

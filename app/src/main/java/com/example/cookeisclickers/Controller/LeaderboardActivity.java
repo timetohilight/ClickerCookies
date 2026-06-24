@@ -46,7 +46,6 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
             }
 
         } catch (Exception e) {
-            // Перехватываем краш разметки или элементов и выводим его текст на экран
             Toast.makeText(this, "Ошибка onCreate: " + e.getMessage(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
@@ -68,13 +67,13 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
     @Override
     public void renderLeaderboard(List<String> formattedScores) {
         if (listViewLeaderboard != null && formattedScores != null) {
-            // Заменили дефолтный android.R.layout.simple_list_item_1 на твой R.layout.leaderboard_item
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.leaderboard_item, formattedScores);
             listViewLeaderboard.setAdapter(adapter);
         }
     }
+
     @Override
-    public void updateLocalUserData(String username, int lvl1, int lvl2) {
+    public void updateLocalUserData(String username, long lvl1, long lvl2) {
         if (textViewLocalUserStatus != null) {
             textViewLocalUserStatus.setText("Текущая сессия: " + username + " [Печеньки: " + lvl1 + " | Oreo: " + lvl2 + "]");
         }

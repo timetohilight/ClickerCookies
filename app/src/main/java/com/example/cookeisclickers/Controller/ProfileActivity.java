@@ -34,10 +34,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static class ProfileData {
         String name;
-        int cookiesLvl1;
-        int cookiesLvl2;
+        long cookiesLvl1;
+        long cookiesLvl2;
 
-        ProfileData(String name, int cookiesLvl1, int cookiesLvl2) {
+        ProfileData(String name, long cookiesLvl1, long cookiesLvl2) {
             this.name = name;
             this.cookiesLvl1 = cookiesLvl1;
             this.cookiesLvl2 = cookiesLvl2;
@@ -116,15 +116,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         for (String user : model.getUserList()) {
             SharedPreferences userPrefs = getSharedPreferences("cookies_save_" + user, Context.MODE_PRIVATE);
-            int c1 = userPrefs.getInt("cookies", 0);
-            int c2 = userPrefs.getInt("level2_cookies", 0);
+            long c1 = userPrefs.getLong("cookies", 0L);
+            long c2 = userPrefs.getLong("level2_cookies", 0L);
 
             profileList.add(new ProfileData(user, c1, c2));
         }
 
         adapter.notifyDataSetChanged();
     }
-
 
     private class ProfileAdapter extends BaseAdapter {
         private final Context context;
@@ -154,7 +153,6 @@ public class ProfileActivity extends AppCompatActivity {
             ProfileData data = items.get(position);
 
             tvProfileInfo.setText(data.name + "  [ Lvl 1: " + data.cookiesLvl1 + " 🍪 | Lvl 2: " + data.cookiesLvl2 + " 🍪 ]");
-
             rbSelect.setChecked(position == selectedPosition);
 
             return convertView;

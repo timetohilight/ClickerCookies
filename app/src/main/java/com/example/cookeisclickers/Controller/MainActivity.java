@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView cookieView;
     private ImageButton mainCookie;
     private Button btnLevel2, btnShop;
-
-    // Новая переменная для кнопки профилей
     private Button btnProfile;
 
     private final Handler autoClickHandler = new Handler();
@@ -29,15 +27,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         model = GameModel.getInstance();
-
-        // При самом первом запуске приложения загружаем последний активный профиль и его прогресс
         model.loadProgress(getApplicationContext());
 
         cookieView = findViewById(R.id.cookieView);
         mainCookie = findViewById(R.id.mainCookie);
         btnLevel2 = findViewById(R.id.btnLevel2);
         btnShop = findViewById(R.id.btnShop);
-
         btnProfile = findViewById(R.id.btnProfile);
 
         mainCookie.setOnClickListener(v -> {
@@ -52,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SecondLevelActivity.class));
             }
             else if (model.getCookies() >= 500) {
-                model.removeCookies(500); // Вычитаем оплату
-                model.unlockLevel2();     // Ставим флаг открытия в модели
-                model.saveProgress(getApplicationContext()); // Записываем в файл этого юзера, чтобы не сбросилось!
-                updateView();             // Обновляем циферки на главном экране
+                model.removeCookies(500);
+                model.unlockLevel2();
+                model.saveProgress(getApplicationContext());
+                updateView();
                 startActivity(new Intent(this, SecondLevelActivity.class));
             } else {
                 android.widget.Toast.makeText(this, "Нужно 500 🍪 для разблокировки!", android.widget.Toast.LENGTH_SHORT).show();
@@ -75,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (model.getAutoClickersLvl2() > 0 || model.getQuantumGeneratorsLvl2() > 0) {
-                    int incomeLvl2 = (model.getAutoClickersLvl2() * 10) + (model.getQuantumGeneratorsLvl2() * 100);
+                    long incomeLvl2 = ((long) model.getAutoClickersLvl2() * 10) + ((long) model.getQuantumGeneratorsLvl2() * 100);
                     model.addPassiveLevel2Cookies(incomeLvl2);
                 }
 

@@ -10,31 +10,31 @@ public class GameModel {
     private static GameModel instance;
 
     // --- Ресурсы 1 уровня ---
-    private int cookies = 0;
-    private int clickPower = 1;
-    private int multiplier = 1;
+    private long cookies = 0;
+    private long clickPower = 1;
+    private long multiplier = 1;
     private int autoClickers = 0;
     private int cookieFactories = 0;
 
-    private int clickUpgradeCost = 50;
-    private int autoClickerCost = 150;
-    private int factoryCost = 800;
-    private int multiplierCost = 300;
+    private long clickUpgradeCost = 50;
+    private long autoClickerCost = 150;
+    private long factoryCost = 800;
+    private long multiplierCost = 300;
 
     // --- Ресурсы 2 уровня ---
-    private int level2Cookies = 0;
+    private long level2Cookies = 0;
     private boolean isLevel2Unlocked = false;
 
-    private int clickPowerLvl2 = 20;
+    private long clickPowerLvl2 = 20;
     private int autoClickersLvl2 = 0;
     private int superClicksLvl2 = 0;
     private int quantumGeneratorsLvl2 = 0;
 
-    private int clickUpgradeCostLvl2 = 200;
-    private int autoClickerCostLvl2 = 1000;
-    private int superClickCostLvl2 = 5000;
-    private int quantumGeneratorCostLvl2 = 15000;
-    private int multiplierCostLvl2 = 2000;
+    private long clickUpgradeCostLvl2 = 200;
+    private long autoClickerCostLvl2 = 1000;
+    private long superClickCostLvl2 = 5000;
+    private long quantumGeneratorCostLvl2 = 15000;
+    private long multiplierCostLvl2 = 2000;
 
     // --- Системные переменные для управления профилями ---
     private String currentUser = "DefaultPlayer";
@@ -110,27 +110,27 @@ public class GameModel {
         SharedPreferences prefs = context.getSharedPreferences("cookies_save_" + currentUser, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putInt(KEY_COOKIES, cookies);
-        editor.putInt(KEY_CLICK_POWER, clickPower);
-        editor.putInt(KEY_MULTIPLIER, multiplier);
+        editor.putLong(KEY_COOKIES, cookies);
+        editor.putLong(KEY_CLICK_POWER, clickPower);
+        editor.putLong(KEY_MULTIPLIER, multiplier);
         editor.putInt(KEY_AUTO_CLICKERS, autoClickers);
         editor.putInt(KEY_COOKIE_FACTORIES, cookieFactories);
-        editor.putInt(KEY_CLICK_UPGRADE_COST, clickUpgradeCost);
-        editor.putInt(KEY_AUTO_CLICKER_COST, autoClickerCost);
-        editor.putInt(KEY_FACTORY_COST, factoryCost);
-        editor.putInt(KEY_MULTIPLIER_COST, multiplierCost);
+        editor.putLong(KEY_CLICK_UPGRADE_COST, clickUpgradeCost);
+        editor.putLong(KEY_AUTO_CLICKER_COST, autoClickerCost);
+        editor.putLong(KEY_FACTORY_COST, factoryCost);
+        editor.putLong(KEY_MULTIPLIER_COST, multiplierCost);
 
-        editor.putInt(KEY_LEVEL2_COOKIES, level2Cookies);
+        editor.putLong(KEY_LEVEL2_COOKIES, level2Cookies);
         editor.putBoolean(KEY_IS_LEVEL2_UNLOCKED, isLevel2Unlocked);
-        editor.putInt(KEY_CLICK_POWER_LVL2, clickPowerLvl2);
+        editor.putLong(KEY_CLICK_POWER_LVL2, clickPowerLvl2);
         editor.putInt(KEY_AUTO_CLICKERS_LVL2, autoClickersLvl2);
         editor.putInt(KEY_SUPER_CLICKS_LVL2, superClicksLvl2);
         editor.putInt(KEY_QUANTUM_GENERATORS_LVL2, quantumGeneratorsLvl2);
-        editor.putInt(KEY_CLICK_UPGRADE_COST_LVL2, clickUpgradeCostLvl2);
-        editor.putInt(KEY_AUTO_CLICKER_COST_LVL2, autoClickerCostLvl2);
-        editor.putInt(KEY_SUPER_CLICK_COST_LVL2, superClickCostLvl2); // Опечатка исправлена тут!
-        editor.putInt(KEY_QUANTUM_GENERATOR_COST_LVL2, quantumGeneratorCostLvl2);
-        editor.putInt(KEY_MULTIPLIER_COST_LVL2, multiplierCostLvl2);
+        editor.putLong(KEY_CLICK_UPGRADE_COST_LVL2, clickUpgradeCostLvl2);
+        editor.putLong(KEY_AUTO_CLICKER_COST_LVL2, autoClickerCostLvl2);
+        editor.putLong(KEY_SUPER_CLICK_COST_LVL2, superClickCostLvl2);
+        editor.putLong(KEY_QUANTUM_GENERATOR_COST_LVL2, quantumGeneratorCostLvl2);
+        editor.putLong(KEY_MULTIPLIER_COST_LVL2, multiplierCostLvl2);
 
         editor.apply();
     }
@@ -148,33 +148,33 @@ public class GameModel {
         }
 
         SharedPreferences prefs = context.getSharedPreferences("cookies_save_" + currentUser, Context.MODE_PRIVATE);
-        cookies = prefs.getInt(KEY_COOKIES, 0);
-        clickPower = prefs.getInt(KEY_CLICK_POWER, 1);
-        multiplier = prefs.getInt(KEY_MULTIPLIER, 1);
+        cookies = prefs.getLong(KEY_COOKIES, 0L);
+        clickPower = prefs.getLong(KEY_CLICK_POWER, 1L);
+        multiplier = prefs.getLong(KEY_MULTIPLIER, 1L);
         autoClickers = prefs.getInt(KEY_AUTO_CLICKERS, 0);
         cookieFactories = prefs.getInt(KEY_COOKIE_FACTORIES, 0);
-        clickUpgradeCost = prefs.getInt(KEY_CLICK_UPGRADE_COST, 50);
-        autoClickerCost = prefs.getInt(KEY_AUTO_CLICKER_COST, 150);
-        factoryCost = prefs.getInt(KEY_FACTORY_COST, 800);
-        multiplierCost = prefs.getInt(KEY_MULTIPLIER_COST, 300);
+        clickUpgradeCost = prefs.getLong(KEY_CLICK_UPGRADE_COST, 50L);
+        autoClickerCost = prefs.getLong(KEY_AUTO_CLICKER_COST, 150L);
+        factoryCost = prefs.getLong(KEY_FACTORY_COST, 800L);
+        multiplierCost = prefs.getLong(KEY_MULTIPLIER_COST, 300L);
 
-        level2Cookies = prefs.getInt(KEY_LEVEL2_COOKIES, 0);
+        level2Cookies = prefs.getLong(KEY_LEVEL2_COOKIES, 0L);
         isLevel2Unlocked = prefs.getBoolean(KEY_IS_LEVEL2_UNLOCKED, false);
-        clickPowerLvl2 = prefs.getInt(KEY_CLICK_POWER_LVL2, 20);
+        clickPowerLvl2 = prefs.getLong(KEY_CLICK_POWER_LVL2, 20L);
         autoClickersLvl2 = prefs.getInt(KEY_AUTO_CLICKERS_LVL2, 0);
         superClicksLvl2 = prefs.getInt(KEY_SUPER_CLICKS_LVL2, 0);
         quantumGeneratorsLvl2 = prefs.getInt(KEY_QUANTUM_GENERATORS_LVL2, 0);
-        clickUpgradeCostLvl2 = prefs.getInt(KEY_CLICK_UPGRADE_COST_LVL2, 200);
-        autoClickerCostLvl2 = prefs.getInt(KEY_AUTO_CLICKER_COST_LVL2, 1000);
-        superClickCostLvl2 = prefs.getInt(KEY_SUPER_CLICK_COST_LVL2, 5000);
-        quantumGeneratorCostLvl2 = prefs.getInt(KEY_QUANTUM_GENERATOR_COST_LVL2, 15000);
-        multiplierCostLvl2 = prefs.getInt(KEY_MULTIPLIER_COST_LVL2, 2000);
+        clickUpgradeCostLvl2 = prefs.getLong(KEY_CLICK_UPGRADE_COST_LVL2, 200L);
+        autoClickerCostLvl2 = prefs.getLong(KEY_AUTO_CLICKER_COST_LVL2, 1000L);
+        superClickCostLvl2 = prefs.getLong(KEY_SUPER_CLICK_COST_LVL2, 5000L);
+        quantumGeneratorCostLvl2 = prefs.getLong(KEY_QUANTUM_GENERATOR_COST_LVL2, 15000L);
+        multiplierCostLvl2 = prefs.getLong(KEY_MULTIPLIER_COST_LVL2, 2000L);
     }
 
     // --- Логика 1 уровня ---
     public void addCookies() { cookies += clickPower * multiplier; }
-    public void autoClick() { cookies += (autoClickers * 1) + (cookieFactories * 15); }
-    public void removeCookies(int amount) { this.cookies -= amount; }
+    public void autoClick() { cookies += ((long) autoClickers * 1) + ((long) cookieFactories * 15); }
+    public void removeCookies(long amount) { this.cookies -= amount; }
 
     public boolean buyClickPowerUpgrade() {
         if (cookies >= clickUpgradeCost) { cookies -= clickUpgradeCost; clickPower++; clickUpgradeCost *= 1.5; return true; }
@@ -199,9 +199,9 @@ public class GameModel {
     }
 
     // --- Логика 2 уровня ---
-    public void addLevel2Cookies() { level2Cookies += (clickPowerLvl2 + (superClicksLvl2 * 50)); }
-    public void autoClickLvl2() { level2Cookies += (autoClickersLvl2 * 20) + (quantumGeneratorsLvl2 * 300); }
-    public void addPassiveLevel2Cookies(int amount) { level2Cookies += amount; }
+    public void addLevel2Cookies() { level2Cookies += (clickPowerLvl2 + ((long) superClicksLvl2 * 50)); }
+    public void autoClickLvl2() { level2Cookies += ((long) autoClickersLvl2 * 20) + ((long) quantumGeneratorsLvl2 * 300); }
+    public void addPassiveLevel2Cookies(long amount) { level2Cookies += amount; }
 
     public boolean buyClickPowerUpgradeLvl2() {
         if (level2Cookies >= clickUpgradeCostLvl2) { level2Cookies -= clickUpgradeCostLvl2; clickPowerLvl2 += 15; clickUpgradeCostLvl2 *= 1.5; return true; }
@@ -223,6 +223,10 @@ public class GameModel {
         if (level2Cookies >= multiplierCostLvl2) { level2Cookies -= multiplierCostLvl2; clickPowerLvl2 *= 2; multiplierCostLvl2 *= 3.0; return true; }
         return false;
     }
+
+    public void setCookies(long cookies) { this.cookies = cookies; }
+    public void setLevel2Cookies(long level2Cookies) { this.level2Cookies = level2Cookies; }
+
     public java.util.Map<String, Object> getFirebaseDataMap() {
         java.util.Map<String, Object> data = new java.util.HashMap<>();
         data.put("username", currentUser);
@@ -234,25 +238,25 @@ public class GameModel {
     }
 
     // --- Геттеры ---
-    public int getCookies() { return cookies; }
-    public int getClickPower() { return clickPower; }
-    public int getMultiplier() { return multiplier; }
+    public long getCookies() { return cookies; }
+    public long getClickPower() { return clickPower; }
+    public long getMultiplier() { return multiplier; }
     public int getAutoClickers() { return autoClickers; }
     public int getCookieFactories() { return cookieFactories; }
-    public int getClickUpgradeCost() { return clickUpgradeCost; }
-    public int getAutoClickerCost() { return autoClickerCost; }
-    public int getFactoryCost() { return factoryCost; }
-    public int getMultiplierCost() { return multiplierCost; }
+    public long getClickUpgradeCost() { return clickUpgradeCost; }
+    public long getAutoClickerCost() { return autoClickerCost; }
+    public long getFactoryCost() { return factoryCost; }
+    public long getMultiplierCost() { return multiplierCost; }
 
-    public int getLevel2Cookies() { return level2Cookies; }
+    public long getLevel2Cookies() { return level2Cookies; }
     public boolean isLevel2Unlocked() { return isLevel2Unlocked; }
-    public int getClickPowerLvl2() { return clickPowerLvl2; }
+    public long getClickPowerLvl2() { return clickPowerLvl2; }
     public int getAutoClickersLvl2() { return autoClickersLvl2; }
     public int getSuperClicksLvl2() { return superClicksLvl2; }
     public int getQuantumGeneratorsLvl2() { return quantumGeneratorsLvl2; }
-    public int getClickUpgradeCostLvl2() { return clickUpgradeCostLvl2; }
-    public int getAutoClickerCostLvl2() { return autoClickerCostLvl2; }
-    public int getSuperClickCostLvl2() { return superClickCostLvl2; }
-    public int getQuantumGeneratorCostLvl2() { return quantumGeneratorCostLvl2; }
-    public int getMultiplierCostLvl2() { return multiplierCostLvl2; }
+    public long getClickUpgradeCostLvl2() { return clickUpgradeCostLvl2; }
+    public long getAutoClickerCostLvl2() { return autoClickerCostLvl2; }
+    public long getSuperClickCostLvl2() { return superClickCostLvl2; }
+    public long getQuantumGeneratorCostLvl2() { return quantumGeneratorCostLvl2; }
+    public long getMultiplierCostLvl2() { return multiplierCostLvl2; }
 }
